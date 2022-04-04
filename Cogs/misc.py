@@ -1,3 +1,4 @@
+from Cogs.spikey_boi import spam_mail
 import discord
 from discord.ext import commands
 from discord.ext.commands import check
@@ -117,7 +118,12 @@ class misc(commands.Cog):
         embed.add_field(name="Volumes:", value=vol, inline="False")
         embed.add_field(name="Rank:", value=ra, inline="False")
         await ctx.respond(embed=embed)
-    
+
+    @discord.slash_command(description="Email Spam Automator")
+    async def spikeyspam(self, ctx, *,receive: str, username: str,password: str,num: int,message_body: str, ):
+        files=[]
+        spam_mail(receive, username, password, message_body,
+                  'gmail', num, 0, files)
     '''
     @commands.slash_command()
     async def rumble(self, ctx):
